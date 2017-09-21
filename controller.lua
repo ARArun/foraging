@@ -94,3 +94,22 @@ function choose()
 
 end
 --------------------------------------------------------------------------------
+----------------------------Function approach-----------------------------------
+-----------We move towards the nearest obstacle we have choosen-----------------
+--------------------------------------------------------------------------------
+function approach()
+    x = 0
+    for i = 1, 24 do --some modification must be done here as we need not check
+                     --all proximity sensors then ones located in fron tshall do
+        if x < robot.proximity[i].value then
+            x = robot.proximity[i].value
+        end
+    end
+    robot.wheels.set_velocity((1 - x) * 10, (1 - x) * 10)
+
+    if x >= 0.9 then
+        robot.wheels.set_velocity(0,0)
+        state = "grab"
+    end
+end
+--------------------------------------------------------------------------------

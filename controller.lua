@@ -18,6 +18,7 @@ function step()
     if state ~= prev_state then
         log(state)
     end
+    prev_state = state
     if state == "roam" then
         roam()
     elseif state == "choose" then

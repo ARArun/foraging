@@ -18,3 +18,15 @@ program that lets robots taking objects and moving them to preferred locations.
 * gripper
 * differential_steering
 * leds
+
+### Implementation
+
+So we have a set of robots that are going to search for obstacles find them,  
+capture/grab them bring them to desired location. So first arena design.
+
+
+### States Table
+
+State | function
+--- | ---
+roam | searches for obstacles <br> once found goes to choose

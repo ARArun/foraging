@@ -22,6 +22,12 @@ function step()
         roam()
     elseif state == "choose" then
         choose()
+    elseif state == "approach" then
+        approach()
+    elseif state == "grab" then
+        grab()
+    elseif state == "pull" then
+        robot.wheels.set_velocity(-10,-10)
     end
 end
 --------------------------------------------------------------------------------
@@ -110,6 +116,32 @@ function approach()
     if x >= 0.9 then
         robot.wheels.set_velocity(0,0)
         state = "grab"
+    end
+end
+--------------------------------------------------------------------------------
+--------------------------------Function Grab-----------------------------------
+------------------------We rotate the turret and grab the box-------------------
+--------------------------------------------------------------------------------
+function grab()
+    grip_ang = 200
+    for i = 1,24 do
+        if robot.proximity[i].value >= 0.9 then
+            grip_ang = robot.proximity[i].angle
+            break
+        end
+    end
+    if grip_ang == 200 then
+        robot.wheels.set_velocity(5,5)
+    else
+        robot.wheels.set_velocity(0,0)
+        robot.turret.set_rotation(grip_ang)
+        count_time = count_time + 1
+    end
+    if count_time == 100 then
+        robot.gripper.lock_positive()
+        robot.turret.set_passive_mode()
+        count_time = 0
+        state = "pull"
     end
 end
 --------------------------------------------------------------------------------

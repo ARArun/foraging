@@ -20,6 +20,8 @@ function step()
     end
     if state == "roam" then
         roam()
+    elseif state == "choose" then
+        choose()
     end
 end
 --------------------------------------------------------------------------------
@@ -62,5 +64,33 @@ function roam()
     else
         robot.wheels.set_velocity(10,10)
     end
+end
+--------------------------------------------------------------------------------
+--------------------------Function Choose---------------------------------------
+--------We choose the nearest obstacle and orient our robot towards it----------
+--------------------------------------------------------------------------------
+function choose()
+
+    robot.wheels.set_velocity(0,0)
+    dist = robot.colored_blob_omnidirectional_camera[1].distance
+    ang =  robot.colored_blob_omnidirectional_camera[1].angle
+
+    for i = 1, #robot.colored_blob_omnidirectional_camera do
+
+        if dist > robot.colored_blob_omnidirectional_camera[i].distance then
+            dist = robot.colored_blob_omnidirectional_camera[i].distance
+            ang = robot.colored_blob_omnidirectional_camera[i].angle
+        end
+
+    end
+
+    if ang > 0.1 then
+        robot.wheels.set_velocity(-1,1)
+    elseif ang < -0.1 then
+        robot.wheels.set_velocity(1,-1)
+    elseif ang >= -0.1 and ang <= 0.1 then
+        state = "approach"
+    end
+
 end
 --------------------------------------------------------------------------------

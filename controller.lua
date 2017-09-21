@@ -112,8 +112,31 @@ function approach()
             x = robot.proximity[i].value
         end
     end
-    robot.wheels.set_velocity((1 - x) * 10, (1 - x) * 10)
+-------trying to keep the orientation while approaching the obstacle------------
+    dist = robot.colored_blob_omnidirectional_camera[1].distance
+    ang =  robot.colored_blob_omnidirectional_camera[1].angle
 
+    for i = 1, #robot.colored_blob_omnidirectional_camera do
+
+        if dist > robot.colored_blob_omnidirectional_camera[i].distance then
+            dist = robot.colored_blob_omnidirectional_camera[i].distance
+            ang = robot.colored_blob_omnidirectional_camera[i].angle
+        end
+
+    end
+    if ang > 0 then
+        robot.wheels.set_velocity(5,6)
+    end
+    if ang < 0 then
+        robot.wheels.set_velocity(6,5)
+    end
+    if ang == 0 then
+        robot.wheels.set_velocity(5,5)
+    end
+-------------trying to slow down when reaching near the obstacle----------------
+    if x >= 0.5 then
+        robot.wheels.set_velocity((1 - x) * 10, (1 - x) * 10)
+    end
     if x >= 0.9 then
         robot.wheels.set_velocity(0,0)
         state = "grab"
@@ -142,14 +165,14 @@ function grab()
         robot.wheels.set_velocity(0.75,0)
     end
     if grip_ang ~= 200 then
-        log(pos," angle: ",x.angle,grip_ang,"value: ",robot.proximity[pos].value)
+        --log(pos," angle: ",x.angle,grip_ang,"value: ",robot.proximity[pos].value)
         robot.wheels.set_velocity(0,0)
         robot.turret.set_rotation(grip_ang)
-        robot.gripper.lock_positive()
+        robot.gripper.lock_negative()
         count_time = count_time + 1
     end
     if count_time == 50 then
-        robot.gripper.lock_positive()
+        robot.gripper.lock_negative()
         robot.turret.set_passive_mode()
         count_time = 0
         state = "pull"

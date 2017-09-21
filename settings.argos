@@ -75,11 +75,11 @@
           <position method="uniform" min="-4,-4,0" max="4,4,0" />
           <orientation method="uniform" min="0,0,0" max="0,0,0" />
           <entity quantity="10" max_trials="100">
-              <box id="ob1" size="0.1,0.1,0.1" movable="true" mass="2.5">
+              <cylinder id="ob1" radius="0.1" height="0.1" movable="true" mass="2.5">
                     <leds medium="leds">
                     <led offset=" 0,0,0.1" anchor="origin" color="blue" />
                   </leds>
-              </box>
+              </cylinder>
           </entity>
         </distribute>
 

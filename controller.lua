@@ -18,6 +18,7 @@ function step()
     if state ~= prev_state then
         log(state)
     end
+    prev_state = state
     if state == "roam" then
         roam()
     elseif state == "choose" then
@@ -124,20 +125,30 @@ end
 --------------------------------------------------------------------------------
 function grab()
     grip_ang = 200
+    x = robot.proximity[1]
+    x.value = 0
+    pos = 0
     for i = 1,24 do
-        if robot.proximity[i].value >= 0.9 then
-            grip_ang = robot.proximity[i].angle
-            break
+        if robot.proximity[i].value >= x.value then
+            x = robot.proximity[i]
+            pos = i
         end
     end
-    if grip_ang == 200 then
-        robot.wheels.set_velocity(5,5)
-    else
+    if x.value == 1 then
+        grip_ang = x.angle
+    elseif pos >= 1 and pos <= 12 then
+        robot.wheels.set_velocity(0,0.75)
+    elseif pos >= 13 and pos <= 24 then
+        robot.wheels.set_velocity(0.75,0)
+    end
+    if grip_ang ~= 200 then
+        log(pos," angle: ",x.angle,grip_ang,"value: ",robot.proximity[pos].value)
         robot.wheels.set_velocity(0,0)
         robot.turret.set_rotation(grip_ang)
+        robot.gripper.lock_positive()
         count_time = count_time + 1
     end
-    if count_time == 100 then
+    if count_time == 50 then
         robot.gripper.lock_positive()
         robot.turret.set_passive_mode()
         count_time = 0

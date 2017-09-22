@@ -32,6 +32,5 @@ State | function
 roam | searches for obstacles <br> once found goes to choose | chooses the closest obstacle <br> orientation of robot is set toward the choosen obstacle <br> state is changed to approach
 approach | we go near the chosen obstacle <br> and change state to grab
 grab | grab the obstacle<br> change to nearest_border_orient state
-nearest_border_orient | according to pos we decide which side to go<br>chan
-ge state to home
+nearest_border_orient | according to pos we decide which side to go<br>change state to home
 home | we try to go to black area<br> once there drop there drop the obstacle<br>change state to roam back again

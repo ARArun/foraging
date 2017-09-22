@@ -34,3 +34,10 @@ approach | we go near the chosen obstacle <br> and change state to grab
 grab | grab the obstacle<br> change to nearest_border_orient state
 nearest_border_orient | according to pos we decide which side to go<br>change state to home
 home | we try to go to black area<br> once there drop there drop the obstacle<br>change state to roam back again
+
+### To run
+
+```
+$ cd waste_removal_k_1/
+$ argos3 -c settings.argos
+```

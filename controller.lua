@@ -27,8 +27,10 @@ function step()
         approach()
     elseif state == "grab" then
         grab()
-    elseif state == "pull" then
-        robot.wheels.set_velocity(-10,-10)
+    elseif state == "nearest_border_orient" then
+        nearest_border_orient()
+    elseif state == "home" then
+        home()
     end
 end
 --------------------------------------------------------------------------------
@@ -175,7 +177,64 @@ function grab()
         robot.gripper.lock_negative()
         robot.turret.set_passive_mode()
         count_time = 0
-        state = "pull"
+        state = "nearest_border_orient"
     end
 end
 --------------------------------------------------------------------------------
+-------------------Function nearest_border_orient-------------------------------
+----------We Choose which side is nearest to the location of robot--------------
+function nearest_border_orient()
+    x = robot.positioning.position.x
+    y = robot.positioning.position.y
+    angle = robot.positioning.orientation.angle
+    sign = robot.positioning.orientation.axis.z
+    if (x >= 0 and y >= 0) and x >=y then --first quadrant --go top
+        if (sign == 1 and angle < 0.1) or (sing == -1 and angle > 6.1) then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    elseif (x > 0 and y > 0) and y > x then --first quadrant --go left
+        if (sign == 1 and angle > 1.4 and angle < 1.6) or (sign == -1 and angle > 4.6 and angle < 4.7) then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    elseif (x < 0 and y > 0) and -x > y then --second quadrant --go bottom
+        if angle > 3 and angle < 3.2 then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    elseif (x < 0 and y > 0) and y > -x then --second quadrant --go left
+        if (sign == 1 and angle > 1.4 and angle < 1.6) or (sign == -1 and angle > 4.6 and angle < 4.7) then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    elseif (x > 0 and y < 0) and math.abs(x) > math.abs(y) then --fourth quadrant --go top
+        if (sign == 1 and angle < 0.1) or (sing == -1 and angle > 6.1) then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    elseif (x > 0 and y < 0) and math.abs(x) < math.abs(y) then --fourth quadrant --go right
+        if (sign == 1 and angle > 4.6 and angle < 4.7) or (sign == -1 and angle > 1.4 and angle < 1.6) then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    elseif (x < 0 and y < 0) and math.abs(x) > math.abs(y) then --third quadrant --go bottom
+        if angle > 3 and angle < 3.2 then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    elseif (x < 0 and y < 0) and math.abs(x) < math.abs(y) then --third quadrant --go right
+        if (sign == 1 and angle > 4.6 and angle < 4.7) or (sign == -1 and angle > 1.4 and angle < 1.6) then
+            state = "home"
+        else
+            robot.wheels.set_velocity(-1,1)
+        end
+    end
+end

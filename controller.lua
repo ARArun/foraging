@@ -60,15 +60,22 @@ function roam()
                       robot.proximity[22].value +
                       robot.proximity[24].value +
                       robot.proximity[23].value
+--------This ensures that we are not trying to lift already moved boxes---------
     if #robot.colored_blob_omnidirectional_camera >= 1 then
-        state = "choose"
-    elseif sensingLeft ~= 0 then
+        check = 0
+        for i = 1, #robot.colored_blob_omnidirectional_camera do
+            if robot.colored_blob_omnidirectional_camera[i].color.green > check then
+                check = robot.colored_blob_omnidirectional_camera[i].color.green
+            end
+        end
+        if check == 0 then
+            state = "choose"
+        end
+    end
+-----------------This is obstacle avoidance navigation--------------------------
+    if sensingLeft ~= 0 then
         robot.wheels.set_velocity(7,3)
     elseif sensingRight ~= 0 then
-        robot.wheels.set_velocity(3,7)
-    elseif robot.motor_ground[1].value < 0.40 then
-        robot.wheels.set_velocity(7,3)
-    elseif robot.motor_ground[4].value < 0.40 then
         robot.wheels.set_velocity(3,7)
     else
         robot.wheels.set_velocity(10,10)
@@ -183,6 +190,7 @@ end
 --------------------------------------------------------------------------------
 -------------------Function nearest_border_orient-------------------------------
 ----------We Choose which side is nearest to the location of robot--------------
+--------------------------------------------------------------------------------
 function nearest_border_orient()
     x = robot.positioning.position.x
     y = robot.positioning.position.y
@@ -238,3 +246,24 @@ function nearest_border_orient()
         end
     end
 end
+--------------------------------------------------------------------------------
+------------------------------function home-------------------------------------
+-----We reach our black region here we have to drop our box and then go in------
+--------------------------------------------------------------------------------
+function home()
+    robot.wheels.set_velocity(10,10)
+    ground = robot.motor_ground[1].value +
+             robot.motor_ground[2].value +
+             robot.motor_ground[3].value +
+             robot.motor_ground[4].value
+    if ground == 0 then
+        count_time = count_time + 1
+        if count_time == 50 then
+            count_time = 0
+            robot.gripper.unlock()
+            robot.turret.set_position_control_mode()
+            state = "roam"
+        end
+    end
+end
+--------------------------------------------------------------------------------

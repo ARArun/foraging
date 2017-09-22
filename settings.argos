@@ -57,7 +57,144 @@
         <box id="bw" size="10, 0.1, 0.2" movable="false">
           <body position="0,5,0" orientation="0,0,0" />
         </box>
+        <!-- lights in the borders -->
+        <light id="light_N_1"
+           position="4.75,-4.75,0.5"
+           orientation="0,0,0"
+           color="green"
+           intensity="3.0"
+           medium="leds" />
 
+        <light id="light_N_2"
+             position="4.75,-3.75,0.5"
+             orientation="0,0,0"
+             color="green"
+             intensity="3.0"
+             medium="leds" />
+        <light id="light_N_3"
+             position="4.75,-2.75,0.5"
+             orientation="0,0,0"
+             color="green"
+             intensity="3.0"
+             medium="leds" />
+        <light id="light_N_4"
+            position="4.75,-1.75,0.5"
+            orientation="0,0,0"
+            color="green"
+            intensity="3.0"
+            medium="leds" />
+        <light id="light_N_5"
+           position="4.75,-0.75,0.5"
+           orientation="0,0,0"
+           color="green"
+           intensity="3.0"
+           medium="leds" />
+        <light id="light_N_6"
+              position="4.75,0.75,0.5"
+              orientation="0,0,0"
+              color="green"
+              intensity="3.0"
+              medium="leds" />
+        <light id="light_N_7"
+            position="4.75,1.75,0.5"
+            orientation="0,0,0"
+            color="green"
+            intensity="3.0"
+            medium="leds" />
+        <light id="light_N_8"
+             position="4.75,2.75,0.5"
+             orientation="0,0,0"
+             color="green"
+             intensity="3.0"
+             medium="leds" />
+        <light id="light_N_9"
+              position="4.75,3.75,0.5"
+              orientation="0,0,0"
+              color="green"
+              intensity="3.0"
+              medium="leds" />
+        <light id="light_N_10"
+              position="4.75,4.75,0.5"
+              orientation="0,0,0"
+              color="green"
+              intensity="3.0"
+              medium="leds" />
+        <light id="light_N"
+               position="4.75,0,0.5"
+               orientation="0,0,0"
+               color="green"
+               intensity="3.0"
+               medium="leds" />
+        <light id="light_W"
+              position="0,4.75,0.5"
+              orientation="0,0,0"
+              color="green"
+              intensity="3.0"
+              medium="leds" />
+        <light id="light_S"
+             position="-4.75,0,0.5"
+             orientation="0,0,0"
+             color="green"
+             intensity="3.0"
+             medium="leds" />
+        <light id="light_E"
+            position="0,-4.75,0.5"
+            orientation="0,0,0"
+            color="green"
+            intensity="3.0"
+            medium="leds" />
+        <light id="light_W_1" position="3.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_2" position="2.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_3" position="1.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_4" position="0.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_5" position="-0.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_6" position="-1.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_7" position="-2.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_8" position="-3.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_W_9" position="-4.75,4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_1" position="-4.75,3.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_2" position="-4.75,2.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_3" position="-4.75,1.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_4" position="-4.75,0.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_5" position="-4.75,-0.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_6" position="-4.75,-1.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_7" position="-4.75,-2.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_8" position="-4.75,-3.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_S_9" position="-4.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_1" position="-3.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_2" position="-2.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_3" position="-1.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_4" position="-0.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_5" position="0.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_6" position="1.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_7" position="2.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
+        <light id="light_E_8" position="3.75,-4.75,0.5" orientation="0,0,0"
+            color="green" intensity="3.0" medium="leds"/>
         <!-- Spotter Robots -->
         <distribute>
           <position method="uniform" min="-3,-3,0" max="3,3,0" />

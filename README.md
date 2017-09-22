@@ -1,4 +1,4 @@
-# Foraging
+# Waste Removal
 
 ## Aim
 
